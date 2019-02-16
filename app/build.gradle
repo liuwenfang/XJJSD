@@ -1,0 +1,185 @@
+apply plugin: 'com.android.application'
+//apply plugin: 'android-apt'
+android {
+    compileSdkVersion 25
+    buildToolsVersion '26.0.2'
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+        preDexLibraries = false
+    }
+
+    defaultConfig {
+        applicationId "com.ahxbapp.xjjsd"
+        minSdkVersion 17
+        useLibrary 'org.apache.http.legacy'
+        targetSdkVersion 25
+        versionCode 32
+        versionName "1.3.3"
+        multiDexEnabled true
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64', 'mips', 'mips64'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "371a1224e3e63477e319997f", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+        ]
+
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    signingConfigs {
+        release {
+            storeFile file("ahxb.jks")
+            storePassword "111111"
+            keyAlias "ahxb"
+            keyPassword "111111"
+        }
+        debug {
+            storeFile file("ahxb.jks")
+            storePassword "111111"
+            keyAlias "ahxb"
+            keyPassword "111111"
+        }
+    }
+
+    buildTypes {
+
+        debug {
+            signingConfig signingConfigs.release
+        }
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+//        exclude 'META-INF/maven/com.squareup.okio/okio/pom.xml'
+//        exclude 'META-INF/maven/com.squareup.okio/okio/pom.properties'
+    }
+
+}
+repositories {
+    jcenter()
+
+    flatDir {
+        dirs 'libs'
+    }
+    maven {
+        url 'https://maven.google.com/'
+        name 'Google'
+    }
+}
+
+
+dependencies {
+    implementation project(':signseekbar')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation(name: "securePay-180419-v3.2.1.3", ext: "aar")
+
+    //分包处理
+    implementation 'com.android.support:multidex:1.0.1'
+    implementation 'com.android.support:appcompat-v7:25.0.0'
+    implementation 'com.android.support:cardview-v7:25.0.0'
+
+    //    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+
+    //多图片选择器
+    implementation project(':multi-image-selector')
+    implementation project(path: ':pullToRefresh')
+
+    //json解析
+    implementation files('../libs/fastjson-1.1.34.android.jar')
+
+    //
+    implementation files('../libs/eventbus-2.4.0.jar')
+
+    //图片
+    implementation files('../libs/universal-image-loader-1.9.3.jar')
+
+    //四大模块  DbUtils  ViewUtils   HttpUtils  BitmapUtils
+    implementation files('../libs/xUtils-3.1.15.jar')
+
+    //网络
+    implementation files('../libs/android-async-http-1.4.6.jar')
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.3'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3'
+
+    //图片
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.bm.photoview:library:1.3.6'
+
+    //FlowLayout 流式布局
+    implementation 'org.apmem.tools:layouts:1.9@aar'
+
+    //加载/处理超大图片
+    implementation 'com.davemorrissey.labs:subsampling-scale-image-view:3.5.0'
+
+    //数据库的操作
+    implementation 'org.litepal.android:core:1.3.2'
+
+    //banner
+    implementation 'com.bigkoo:convenientbanner:1.0.8'
+
+    // 百分比布局
+    implementation 'com.zhy:percent-support-extends:1.0.1'
+
+    // 二维码扫描工具  基于 ZXING 条形码扫描工具项目改进，为了在肖像模式和增强现实目的下进行更简单的 Android 二维码检测
+    implementation 'com.dlazaro66.qrcodereaderview:qrcodereaderview:1.0.0'
+
+    //Json解析
+    implementation 'com.google.code.gson:gson:2.7'
+    implementation project(':pullToRefresh')
+
+    //威富通  支付
+    implementation files('libs/wftsdk3.3.jar')
+
+    //sqlscout 安卓直连数据库可视化操作
+    implementation 'com.idescout.sql:sqlscout-server:2.0'
+    implementation 'com.android.support:recyclerview-v7:25.0.0'
+    implementation 'cn.bingoogolapple:bga-refreshlayout:1.1.6'
+
+    //    implementation files('libs/alipaySdk-20161222.jar')
+    implementation 'com.jph.takephoto:takephoto_library:4.0.3'
+    implementation 'org.jsoup:jsoup:1.10.1'
+    implementation 'com.youth.banner:banner:1.4.9'
+    implementation 'com.xiaosu:VerticalRollingTextView:1.2.0'
+    implementation 'cn.jiguang.sdk:jpush:3.1.1'
+
+    // 此处以JPush 3.1.1 版本为例。
+    implementation 'cn.jiguang.sdk:jcore:1.1.9'
+
+
+    // 此处以JCore 1.1.9 版本为例。
+}
+
+dependencies {
+    def AAVersion = '4.3.1'
+    //注解  androidannotations
+    annotationProcessor  "org.androidannotations:androidannotations:$AAVersion"
+    implementation "org.androidannotations:androidannotations-api:$AAVersion"
+
+}
+

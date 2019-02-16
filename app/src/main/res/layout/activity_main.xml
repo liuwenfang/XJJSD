@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <com.bigkoo.convenientbanner.ConvenientBanner
+        android:id="@+id/bannerViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:minHeight="?attr/actionBarSize"
+        android:background="@color/common_nav_bg" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_person"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:layout_marginRight="15dp"
+                android:layout_alignParentRight="true"
+                android:background="@mipmap/person"/>
+
+            <TextView
+                android:id="@+id/tv_language"
+                android:layout_width="24dp"
+                android:layout_height="16dp"
+                android:background="@mipmap/chinese"
+                android:layout_toLeftOf="@+id/tv_person"
+                android:layout_marginRight="20dp"
+                android:layout_centerVertical="true"/>
+
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp">
+
+        <Button
+            android:id="@+id/btn_customize"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/home_start_customize"
+            android:layout_weight="1"
+            android:textColor="@color/common_btn_bg"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="30dp"
+            android:textSize="16sp"
+            android:drawableLeft="@mipmap/bg_dingzhi"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:background="@drawable/customize_btn_style"/>
+
+        <Button
+            android:id="@+id/btn_help"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/set_help"
+            android:layout_weight="1"
+            android:textColor="#656565"
+            android:layout_marginRight="20dp"
+            android:textSize="16sp"
+            android:drawableLeft="@mipmap/bg_help"
+            android:drawablePadding="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:background="@drawable/help_btn_style"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

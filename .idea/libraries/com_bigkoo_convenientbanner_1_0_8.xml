@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="com.bigkoo:convenientbanner-1.0.8">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/convenientbanner-1.0.8.aar/0b8e72b3d2c6b2602e9f44fbf0e16741/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/convenientbanner-1.0.8.aar/0b8e72b3d2c6b2602e9f44fbf0e16741/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.bigkoo/convenientbanner/1.0.8/3a0ef4ad2252452db34a738e33605518296607ef/convenientbanner-1.0.8-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
